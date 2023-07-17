@@ -1,5 +1,8 @@
+let currentGoal = "";
 
 module.exports = {
+
+    
 
     getCompliment: (req, res) => {
         const compliments = ["Gee, you're a smart cookie!", "Cool shirt!", "Your Javascript skills are stellar."];
@@ -23,7 +26,22 @@ module.exports = {
 
         res.status(200).send(randomFortune);
     },
-}
+    setGoal: (req, res) => {
+        const { goal } = req.body;
+        currentGoal = goal;
+        res.status(200).send("Goal set successfully.");
+    },
+    updateProgress: (req, res) => {
+        const { milestone } = req.body;
+        res.status(200).send(`Milestone ${milestone} achieved!`);
+    },
+    getCurrentGoal: (req, res) => {
+        res.status(200).send(currentGoal);
+    },
+    
+
+};
+
 
    
     

@@ -22,13 +22,44 @@ fortuneBtn.addEventListener('click', getFortune);
 
 
 
-//3rd feature
+//3rd and 4th feature
+const setGoalButton = document.getElementById("setGoalButton");
+const goalInput = document.getElementById("goalInput");
+const currentGoal = document.getElementById("currentGoal");
+const milestoneButton = document.getElementById("milestoneButton");
+const progressList = document.getElementById("progressList");
+
+let currentProgress = 0;
+
+const setGoal = () => {
+    const goal = goalInput.value;
+    currentGoal.textContent = `Current Goal: ${goal}`;
+    goalInput.value = "";
+};
+
+const updateProgress = () => {
+    currentProgress++;
+    const newProgressItem = document.createElement("li");
+    newProgressItem.textContent = `Milestone ${currentProgress} achieved!`;
+    progressList.appendChild(newProgressItem);
+
+    // Send progress update to the server
+    axios.post("http://localhost:4000/api/progress", { milestone: currentProgress })
+        .then(res => {
+            console.log("Progress updated:", res.data);
+        })
+        .catch(err => {
+            console.error("Error updating progress:", err);
+        });
+};
+
+setGoalButton.addEventListener('click', setGoal);
+milestoneButton.addEventListener('click', updateProgress);
 
 
 
 
 
-//4th feature
 
 
 
