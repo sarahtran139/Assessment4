@@ -29,7 +29,7 @@ module.exports = {
     setGoal: (req, res) => {
         const { goal } = req.body;
         currentGoal = goal;
-        res.status(200).send("Goal set successfully.");
+        res.status(200).send({goal});
     },
     updateProgress: (req, res) => {
         const { milestone } = req.body;

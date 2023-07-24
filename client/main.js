@@ -33,9 +33,16 @@ let currentProgress = 0;
 
 const setGoal = () => {
     const goal = goalInput.value;
-    currentGoal.textContent = `Current Goal: ${goal}`;
-    goalInput.value = "";
+    axios.post("http://localhost:4000/api/goal", { goal })
+        .then(res => {
+            currentGoal.textContent = `Current Goal: ${goal}`;
+            goalInput.value = "";
+        })
+        .catch(err => {
+            console.error("Error setting goal:", err);
+        });
 };
+
 
 const updateProgress = () => {
     currentProgress++;
